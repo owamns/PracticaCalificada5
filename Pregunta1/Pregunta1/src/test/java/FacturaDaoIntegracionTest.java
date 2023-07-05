@@ -16,6 +16,17 @@ class FacturaDaoIntegracionTest {
         statement.close();
         connection.close();
     }
+
+    @Test
+    public void testTodoConAlMenos() throws SQLException {
+        FacturaDao dao = new FacturaDao();
+        Factura factura = new Factura("cliente1", 100.0);
+        Factura factura2 = new Factura("cliente2", 200.0);
+        dao.guardar(factura);
+        dao.guardar(factura2);
+
+        assertEquals(dao.todosConAlMenos(150).get(0), factura2);
+    }
     @Test
     public void testGuardar() throws SQLException {
 
@@ -25,11 +36,5 @@ class FacturaDaoIntegracionTest {
 
         assertEquals(dao.todo().get(0), factura);
     }
-
-    @Test
-    public void testTodoConAlMenos(){
-
-    }
-
 
 }
