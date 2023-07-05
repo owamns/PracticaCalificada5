@@ -39,16 +39,15 @@ public class FacturaDao {
         return facturasConsulta("SELECT * FROM factura");
     }
 
-    public ArrayList<Factura> todosConAlMenos() throws SQLException {
-
-        return facturasConsulta("SELECT * FROM factura WHERE valor>=130");
+    public ArrayList<Factura> todosConAlMenos(double valor) throws SQLException {
+        return facturasConsulta("SELECT * FROM factura WHERE valor>="+valor);
     }
 
     public static void main(String[] args) {
 
         FacturaDao dao = new FacturaDao();
         try {
-            for (Factura factura : dao.todo()){
+            for (Factura factura : dao.todosConAlMenos(130)){
                 System.out.println(factura.toString());
             }
         } catch (SQLException e) {
